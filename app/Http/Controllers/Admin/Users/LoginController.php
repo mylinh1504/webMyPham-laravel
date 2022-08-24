@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     public function index(){
-       return view('admin.users.login',
+       return view('users.login',
        ['title' =>'Đăng nhập hệ thống'
     ]);
     }
 
     public function store(Request $request){
-    //  dd($request ->input());   
-    //  $remember = insset($request ->input('remember')) ? true : false; 
+   
         $this->validate($request,[
             'email' => 'required|email:filter',
             'password' =>'required'

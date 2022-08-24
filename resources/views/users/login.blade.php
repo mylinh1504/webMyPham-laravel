@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +7,14 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <a href="#"><b>Admin</b></a>
+      <a href="#"><b>Login </b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
           @include('admin.alert')
-        <form action="/admin/users/login/store" method="post">
+        <form action="/users/login/store" method="post">
           <div class="input-group mb-3">
             <input type="email" name="email" class="form-control" placeholder="Email">
             <div class="input-group-append">
@@ -45,6 +44,9 @@
             <div class="col-4">
               <button type="submit" class="btn btn-primary btn-block">Sign In</button>
             </div>
+          </div>
+          <div class="input-group mb-3">
+            <a href="{{ route('index') }}">Quay lại</a>
           </div>
           @csrf
         </form>

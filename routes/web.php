@@ -1,23 +1,26 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Users\LoginController;
-use App\Http\Controllers\Admin\MainController;
-
-use App\Http\Controllers\Admin\MenusController;
-use App\Http\Controllers\Admin\Productcontroller;
-use App\Http\Controllers\Admin\UploadController;
-use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\MenuController;
+
+use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\MenusController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\Productcontroller;
+use App\Http\Controllers\Users\RegisterController;
+use App\Http\Controllers\Admin\Users\LoginController;
 
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('admin/users/login',[LoginController::class, 'index'])->name('login');
-Route::post('admin/users/login/store',[LoginController::class, 'store']);
-
+Route::get('users/login',[LoginController::class, 'index'])->name('login');
+Route::post('users/login/store',[LoginController::class, 'store']);
+Route::get('users/register',[RegisterController::class, 'index']);
+Route::post('users/register', [RegisterController::class, 'store']);
 Route::middleware(['auth'])->group(function(){
 
  Route::prefix('admin')->group(function() {
@@ -75,7 +78,7 @@ Route::middleware(['auth'])->group(function(){
 
 });
 
-Route::get('/',[App\Http\Controllers\MainController::class,'index']);
+Route::get('/',[App\Http\Controllers\MainController::class,'index'])->name('index');
 Route::post('/services/load-product',[App\Http\Controllers\MainController::class,'loadProduct']);
 
 Route::get ('danh-muc/{id}-{slug}.html',[MenuController::class,'index']);
@@ -88,3 +91,9 @@ Route::get('carts', [App\Http\Controllers\CartController::class, 'show']);
 Route::post('update-cart', [App\Http\Controllers\CartController::class, 'update']);
 Route::get('carts/delete/{id}', [App\Http\Controllers\CartController::class, 'remove']);
 Route::post('carts', [App\Http\Controllers\CartController::class, 'addCart']);
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+

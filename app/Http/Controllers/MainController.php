@@ -23,7 +23,7 @@ class MainController extends Controller
 
     public function index(){
         return view('home',[
-            'title' =>'Shop Mĩ Phẩm KOSSMEBOX',
+            'title' =>'nuochoatinhyeu',
             'sliders' => $this->slider->show(),
             'menus' => $this->menu->getAll(),
             'products' => $this->product->get()
